@@ -17,7 +17,8 @@ void	read_from_file(t_helper *helper, t_aae *aae)
 	if (dup2(helper->fd[0][1], STDOUT_FILENO) == -1
 			|| dup2(helper->inputfd, STDIN_FILENO) == -1)
 	{
-		perror("dup2");
+		if (helper -> inputfd != -1)
+			perror("dup2");
 		free_fdnspid(helper);
 		exit (EXIT_FAILURE);
 	}

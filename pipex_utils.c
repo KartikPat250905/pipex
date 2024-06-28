@@ -88,7 +88,8 @@ void	childprocess1(char *argv[], char *envp[], t_util *helper)
 	if (dup2(helper->fd[1], STDOUT_FILENO) == -1
 		|| dup2(helper->inputfd, STDIN_FILENO) == -1)
 	{
-		perror("dup2");
+		if(helper -> inputfd != -1)
+			perror("dup2");
 		exit(EXIT_FAILURE);
 	}
 	close(helper->fd[0]);

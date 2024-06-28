@@ -65,6 +65,8 @@ int	fileopener(t_helper *helper, t_aae *aae)
 	int	o;
 
 	helper->inputfd = open(aae->argv[1], O_RDONLY);
+	if (helper -> inputfd == -1)
+		perror(aae -> argv[1]);
 	o = open(aae->argv[aae->ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	helper->outputfd = o;
 	if (helper->outputfd == -1)
